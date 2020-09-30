@@ -5,8 +5,8 @@ const usuarioController = require('../controllers/usuarioController')
 
 
 //crea un usuario
-//api/usuarios
 
+//api/usuarios
 router.post('/',
     usuarioController.crearUsuario
 );
