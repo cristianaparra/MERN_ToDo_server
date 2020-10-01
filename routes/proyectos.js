@@ -9,4 +9,4 @@ proyectoController.crearProyecto
 );
 
 
-modulke.exports = router;
+module.exports = router;
