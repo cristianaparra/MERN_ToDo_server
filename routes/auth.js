@@ -7,8 +7,7 @@ const { check } = require('express-validator')
 
 
 //crea un usuario
-
-//api/usuarios
+//api/auth
 router.post('/',
     [
         check('email', 'agrerga un email valido').isEmail(),
