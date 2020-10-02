@@ -39,7 +39,7 @@ exports.autenticarUsuario = async (req, res) => {
         },
             (error, token) => {
                 if (error) throw error;
-                res.json({ token: token, msg: 'Usuario creado correctamente' });
+                res.json({ token });
             })
 
 
