@@ -37,3 +37,29 @@ exports.crearTarea = async (req, res) => {
         res.status(500).send('tienes un error wacho')
     }
 }
+
+//obtiene las tareas por poryecto
+exports.obtenerTareas = async (req, res) => {
+    try {
+        //extraer el proyecto y comprobar si existe
+
+        const { proyecto } = req.body;
+        const existeProyecto = await Proyecto.findById(proyecto)
+        if (!existeProyecto) {
+            return res.status(404).json({ msg: 'proyecto no encontrado' })
+        }
+
+        // revisar si el proyecto actual pertenece al usuario autenticado
+        //verificar el creador del proyecto
+        if (existeProyecto.creador.toString() !== req.usuario.id) {
+            return res.status(401).json({ msg: 'no autorizado' });
+        }
+        // obtener tareas por proyecto
+        const tareas = await Tarea.find({ proyecto });
+        res.json({ tareas })
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('tienes un error wacho');
+    }
+
+}
